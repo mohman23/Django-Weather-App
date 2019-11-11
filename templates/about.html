@@ -1,0 +1,150 @@
+<ul>
+    <li><a href="/">Home</a>
+    <li><a href="{% url 'weather' %}">Whats the weather like in cities around the world?</a>
+    <li><a href="{% url 'airquality' %}">Check Air Qaulity</a>
+</ul>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <style>
+
+   ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: #dddddd;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #aaa;
+      }
+
+      .grid-container {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          grid-gap: 10px;
+          background-color: #2196F3;
+          padding: 10px;
+        }
+
+        .grid-container > div {
+          background-color: rgba(255, 255, 255, 0.8);
+          text-align: center;
+          padding: 20px 0;
+          font-size: 30px;
+        }
+
+  </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Air Quality</title>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+
+{% load static %}
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
+<link href='//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!-- //web font -->
+<!-- js -->
+<script src="{% static 'js/jquery-1.9.1.min.js'%}"></script>
+<script src="{% static 'js/owl.carousel.js'%}"></script>
+
+
+<style>
+  Good {color: #009966;}
+  Moderate {color: #ffde33;}
+  Unhealthy_for_Sensitive_Groups {color: ff9933;}
+  Unhealthy {color: #cc0033;}
+  Very_Unhealthy {color: #6a5acd;}
+  Hazardous {color: #7e0023;}
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1>About this app</h1>
+
+    <section class="section">
+      <div class="item3">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="content">
+                                <p>This app has been created to check the weather forecast of Bengaluru,  the weather of cities around the world and also to check the air qaulity of Bengaluru.</p>
+                                <p>This app can be divided into three parts - </p>
+                                <p>1. Home page which shows the weather forecast of Bengaluru. Data is being pulled from an api which belongs to Darksky. For more information about DarkSky please click here - <a href="https://darksky.net/dev" target="_blank">Dark Sky. </a> </p>
+                                <p>2. The Weather page allows you to add cities to check their weather, it also allows you to delete cities from the page. This is CRUD(Create, Read, Update and Delete) enabled. Data is being pulled from an api which belongs to Open Weather. For more information about Open Weather please click here - <a href="https://openweathermap.org/" target="_blank"> OpenWeather. </a>                          </p>
+
+                                <p>3. Air Quality, this page allows you to check the air quality of three popular places within Bengaluru. We could have pulled this data from an api but instead we decided to scrap data from aqicn.org. For more information about aqicn.org please click here - <a href="http://aqicn.org" target="_blank"> AQICN.ORG. </a></p>
+
+
+
+                                <p></p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </section>
+
+
+    <section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+</body>
+</html>
+

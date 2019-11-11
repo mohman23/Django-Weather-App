@@ -1,0 +1,263 @@
+<ul>
+    <li><a href="/">Home</a>
+    <li><a href="{% url 'weather' %}">Whats the weather like in cities around the world?</a>
+    <li><a href="{% url 'about' %}">About</a>
+</ul>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <style>
+
+   ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: #dddddd;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #aaa;
+      }
+
+      .grid-container {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          grid-gap: 10px;
+          background-color: #2196F3;
+          padding: 10px;
+        }
+
+        .grid-container > div {
+          background-color: rgba(255, 255, 255, 0.8);
+          text-align: center;
+          padding: 20px 0;
+          font-size: 30px;
+        }
+
+  </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Air Quality</title>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+
+{% load static %}
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
+<link href='//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!-- //web font -->
+<!-- js -->
+<script src="{% static 'js/jquery-1.9.1.min.js'%}"></script>
+<script src="{% static 'js/owl.carousel.js'%}"></script>
+
+
+<style>
+  Good {color: #009966;}
+  Moderate {color: #ffde33;}
+  Unhealthy_for_Sensitive_Groups {color: ff9933;}
+  Unhealthy {color: #cc0033;}
+  Very_Unhealthy {color: #6a5acd;}
+  Hazardous {color: #7e0023;}
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1>Air Quality</h1>
+
+<br/>
+
+<h3 style="background-color:#ffffff;">
+  <p><Good>Good: (0 - 50) Air quality is considered satisfactory, and air pollution poses little or no risk.</Good></p>
+  <p><Moderate>Moderate: (51 - 100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</Moderate></p>
+  <p><Unhealthy_for_Sensitive_Groups>Unhealthy for Sensitive Groups: 101-150 Members of sensitive groups may experience health effects. The general public is not likely to be affected.</Unhealthy_for_Sensitive_Groups></p>
+  <p><Unhealthy>Unhealthy: (151 - 200) Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</Unhealthy></p>
+  <p><Very_Unhealthy>Very Unhealthy: (201 - 300) Health warnings of emergency conditions. The entire population is more likely to be affected.</Very_Unhealthy></p>
+  <p><Hazardous>Hazardous: (300 - 500) Health alert: everyone may experience more serious health effects.</Hazardous></p>
+    <br/>
+  <span>NOTE - The international threshold for health-threatening pollution is 30.</span>
+</h3>
+
+<br/>
+
+  <section class="section">
+    <div class="item1">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="content">
+                                <p>
+                                   <span class="title">{{ air_quality1.city }}</span>
+                                   <br>
+                                   <span class="subtitle">Air Quality Index = {{ air_quality1.air_quality }}</span>
+                                   <br>
+
+                                  	{% if air_quality1.status == "Good" %}
+                                  		<span class="subtitle"><Good>Status = {{ air_quality1.status }}</Good></span>
+
+                                  	{% elif air_quality1.status == "Moderate" %}
+                                  		<span class="subtitle"><Moderate>Status = {{ air_quality1.status }}</Moderate></span>
+
+                                  	{% elif air_quality1.status == "Unhealthy for Sensitive Groups" %}
+                                  		<span class="subtitle"><Unhealthy_for_Sensitive_Groups>Status = {{ air_quality1.status }}</Unhealthy_for_Sensitive_Groups></span>
+
+                                  	{% elif air_quality1.status == "Unhealthy" %}
+                                  		<span class="subtitle"><Unhealthy>Status = {{ air_quality1.status }}</Unhealthy></span>
+
+                                  	{% elif air_quality1.status == "Very Unhealthy" %}
+                                  		<span class="subtitle"><Very_Unhealthy>Status = {{ air_quality1.status }}</Very_Unhealthy></span>
+
+                                  	{% elif air_quality1.status == "Hazardous" %}
+                                  		<span class="subtitle"><Hazardous>Status = {{ air_quality1.status }}</Hazardous></span>
+                                  	{% endif %}
+
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+    <section class="section">
+      <div class="item2">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="content">
+                                <p>
+                                   <span class="title">{{ air_quality2.city }}</span>
+                                   <br>
+                                   <span class="subtitle">Air Quality Index = {{ air_quality2.air_quality }}</span>
+                                   <br>
+                                   {% if air_quality2.status == "Good" %}
+                                  		<span class="subtitle"><Good>Status = {{ air_quality2.status }}</Good></span>
+
+                                  	{% elif air_quality2.status == "Moderate" %}
+                                  		<span class="subtitle"><Moderate>Status = {{ air_quality2.status }}</Moderate></span>
+
+                                  	{% elif air_quality2.status == "Unhealthy for Sensitive Groups" %}
+                                  		<span class="subtitle"><Unhealthy_for_Sensitive_Groups>Status = {{ air_quality2.status }}</Unhealthy_for_Sensitive_Groups></span>
+
+                                  	{% elif air_quality2.status == "Unhealthy" %}
+                                  		<span class="subtitle"><Unhealthy>Status = {{ air_quality2.status }}</Unhealthy></span>
+
+                                  	{% elif air_quality2.status == "Very Unhealthy" %}
+                                  		<span class="subtitle"><Very_Unhealthy>Status = {{ air_quality2.status }}</Very_Unhealthy></span>
+
+                                  	{% elif air_quality1.status == "Hazardous" %}
+                                  		<span class="subtitle"><Hazardous>Status = {{ air_quality2.status }}</Hazardous></span>
+                                  	{% endif %}
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </section>
+
+    <section class="section">
+      <div class="item3">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="content">
+                                <p>
+                                   <span class="title">{{ air_quality3.city }}</span>
+                                   <br>
+                                   <span class="subtitle">Air Quality Index = {{ air_quality3.air_quality }}</span>
+                                   <br>
+                                   {% if air_quality3.status == "Good" %}
+                                  		<span class="subtitle"><Good>Status = {{ air_quality3.status }}</Good></span>
+
+                                  	{% elif air_quality3.status == "Moderate" %}
+                                  		<span class="subtitle"><Moderate>Status = {{ air_quality3.status }}</Moderate></span>
+
+                                  	{% elif air_quality3.status == "Unhealthy for Sensitive Groups" %}
+                                  		<span class="subtitle"><Unhealthy_for_Sensitive_Groups>Status = {{ air_quality3.status }}</Unhealthy_for_Sensitive_Groups></span>
+
+                                  	{% elif air_quality3.status == "Unhealthy" %}
+                                  		<span class="subtitle"><Unhealthy>Status = {{ air_quality3.status }}</Unhealthy></span>
+
+                                  	{% elif air_quality3.status == "Very Unhealthy" %}
+                                  		<span class="subtitle"><Very_Unhealthy>Status = {{ air_quality3.status }}</Very_Unhealthy></span>
+
+                                  	{% elif air_quality3.status == "Hazardous" %}
+                                  		<span class="subtitle"><Hazardous>Status = {{ air_quality3.status }}</Hazardous></span>
+                                  	{% endif %}
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </section>
+
+
+    <section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+</body>
+</html>
+

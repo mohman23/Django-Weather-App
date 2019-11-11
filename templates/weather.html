@@ -1,0 +1,182 @@
+<ul>
+    <li><a href="/">Home</a>
+    <li><a href="{% url 'airquality' %}">Check Air Qaulity</a>
+    <li><a href="{% url 'about' %}">About</a>
+</ul>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <style>
+
+   ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: #dddddd;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #aaa;
+      }
+
+  </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Report</title>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+
+
+
+{% load static %}
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
+<link href='//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!-- //web font -->
+<!-- js -->
+<script src="{% static 'js/jquery-1.9.1.min.js'%}"></script>
+<script src="{% static 'js/owl.carousel.js'%}"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#owl-demo").owlCarousel({
+
+		  autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+		  items : 6,
+		  itemsDesktop : [640,5],
+		  itemsDesktopSmall : [414,4]
+
+		});
+
+	});
+</script>
+
+</head>
+
+<body>
+
+   <!-- <section class="hero bg-secondary text-white">
+            <div class="box">
+                <h1 class="title">
+                  <span>Whats the weather like in cities around the world?</span>
+                </h1>
+            </div>
+    </section> -->
+
+  	<section class="section">
+      <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{ form.name }}
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-info">
+                                    Add City
+                                </button>
+                            </div>
+                        </div>
+                      	{% if message %}
+                      		<div class="notification {{ message_class }}">{{ message}}</div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                  {% for city_weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <br>Minimum Temperature = {{ city_weather.temperature_min }}° C
+                                        <br>Maximum Temperature = {{ city_weather.temperature_max }}° C
+                                      	<br>Humidity = {{ city_weather.humidity }}
+                                        <br>Description = {{ city_weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                          <div class="media-right">
+                          	<a href="{% url 'delete_city' city_weather.city %}"><button class="delete">x</button></a>
+                          </div>
+                        </article>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+  	<section class="section">
+        <div class="container">
+
+        </div>
+    </section>
+
+
+
+
+</body>
+
+</html>
